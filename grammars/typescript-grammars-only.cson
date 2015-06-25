@@ -1,14 +1,193 @@
-# If this is your first time writing a language grammar, check out:
-#   - http://manual.macromates.com/en/language_grammars
-
-'scopeName': 'source.typescript-grammars-only'
-'name': 'PackageName'
+'scopeName': 'source.ts'
+'comment': 'TypeScript Syntax: version 1.0'
 'fileTypes': [
-  'extension'
+  'ts'
+  'str'
+  'tst'
 ]
+'name': 'TypeScript'
+
 'patterns': [
   {
-    'match': '^\\s*@@.*$'
-    'name': 'comment'
+    'comment': 'Match stuff like: namespace name {...}'
+    'match': '\\b(module|namespace)\\s+(\\s*[a-zA-Z0-9_?.$][\\w?.$]*)\\s*'
+    'name': 'meta.function.ts'
+    'captures':
+      '1':
+        'name': 'keyword.operator.ts'
+      '2':
+        'name': 'variable.parameter.function.ts'
+
+  }
+  {
+    'comment': 'Match type annotation for key types'
+    'match': ':\\s*(string|boolean|number|any)\\b'
+    'captures':
+        '1' :
+            'name': 'storage.type.variable.ts'
+  }
+  {
+    'comment': 'Match assert for key types'
+    'match': '<(string|boolean|number|any)>'
+    'captures':
+        '1' :
+            'name': 'storage.type.variable.ts'
+  }
+  {
+    'comment': 'Match this.'
+    'match': '\\b(this)\\.'
+    'captures':
+      '1':
+        'name': 'storage.type.variable.ts'
+  }
+  {
+    'comment': 'Match stuff like: constructor'
+    'match': '\\b(constructor|declare|interface|as|AS|public|export)\\b'
+    'name': 'keyword.operator.ts'
+  }
+  {
+    'comment': 'Match stuff like: super(argument, list)'
+    'match': '(super)\\)'
+    'name': 'keyword.other.ts'
+    'captures':
+      '1':
+        'name': 'variable.type.ts'
+  }
+  {
+    'comment': 'Matches class method names and styles as function, even if marked private, or getters/setters'
+    'match': '^\\s*(private)?(get|set)?\\s+(\\w+)(\\()'
+    'captures':
+      '1':
+        'name': 'keyword.other.ts'
+      '2':
+        'name': 'storage.modifier.ts'
+      '3':
+        'name': 'entity.name.function.ts'
+      '4':
+        'name': 'meta.brace.round.ts'
+  }
+  {
+    'comment': 'Match stuff like: function() {...}'
+    'match': '([a-zA-Z_?.$][\\w?.$]*)\\(\\) \\{'
+    'name': 'meta.function.ts'
+    'captures':
+      '1':
+        'name': 'entity.name.function.ts'
+  }
+  {
+    'comment': 'Matches the types when typing params or variables, such as (param:type1, param2:type2):type3, and var x:string = ...'
+    'match': ':(\\w+\\.?(?:\\w)+)'
+    'captures':
+      '1':
+        'name': 'variable.type.ts'
+  }
+  {
+    'comment': "Matches all function parameters (but not the parameter's types)"
+    'match': '([\\w$]+(?=:[\\w.]+\\s*[\\[\\],\\)]))'
+    'captures':
+      '1':
+        'name': 'variable.parameter.function.ts'
+  }
+  {
+      'comment': 'Match full triple slash reference comments'
+      'match': '(\\/\\/\\/\\s*<reference\\s*path\\s*=)(.*)(\\/>)'
+      'captures':
+        '1':
+          'name':'keyword.other.ts'
+        '2':
+          'name':'reference.path.string'
+        '3':
+          'name':'keyword.other.ts'
+  }
+  {
+      'comment': 'Match <amd-dependency'
+      'match': '(\\/\\/\\/\\s*<amd-dependency\\s*path\\s*=)(.*)(\\/>)'
+      'captures':
+        '1':
+          'name':'keyword.other.ts'
+        '2':
+          'name':'amd.path.string'
+        '3':
+          'name':'keyword.other.ts'
+  }
+  {
+      'comment': 'Match <amd-module'
+      'match': '(\\/\\/\\/\\s*<amd-module\\s*name\\s*=)(.*)(\\/>)'
+      'captures':
+        '1':
+          'name':'keyword.other.ts'
+        '2':
+          'name':'amd.path.string'
+        '3':
+          'name':'keyword.other.ts'
+  }
+  {
+      'comment': 'Match import = require'
+      'match': '(import)\\s*(\\w*)\\s*=\\s*(require)\\s*\\((.*)\\)'
+      'captures':
+        '1':
+           'name':'keyword.other.ts'
+        '2':
+          'name':'variable.type.ts'
+        '3':
+           'name':'keyword.other.ts'
+        '4':
+          'name':'require.path.string'
+  }
+  {
+      'comment': 'Match ES6 "import from" syntax'
+      'match': '(import).*(from)\\s*(.*[\'"])'
+      'captures':
+        '1':
+           'name':'keyword.other.ts'
+        '2':
+           'name':'keyword.other.ts'
+        '3':
+          'name':'es6import.path.string'
+  }
+  {
+    'include': 'source.js'
+  }
+
+  # TRANSFORMS
+  {
+      'comment': 'Embedded Syntaxes support'
+      'begin': '(transform):(null){'
+      'beginCaptures':
+        '1':
+          'name': 'keyword.other.ts'
+        '2':
+          'name': 'meta.support.constant.ts'
+      'end': '}(transform):(null)'
+      'endCaptures':
+          '1':
+            'name': 'keyword.other.ts'
+          '2':
+            'name': 'meta.support.constant.ts'
+      'patterns': [
+        {
+          'include': 'source.ts'
+        }
+      ]
+  }
+  {
+      'comment': 'Embedded Syntax for JSX'
+      'begin': '(transform):(jsx){'
+      'beginCaptures':
+        '1':
+          'name': 'keyword.other.ts'
+        '2':
+          'name': 'meta.support.constant.ts'
+      'end': '}(transform):(jsx)'
+      'endCaptures':
+          '1':
+            'name': 'keyword.other.ts'
+          '2':
+            'name': 'meta.support.constant.ts'
+      'patterns': [
+        {
+          'include': 'text.html.basic'
+        }
+      ]
   }
 ]
