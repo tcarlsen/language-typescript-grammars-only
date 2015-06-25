@@ -1,0 +1,14 @@
+{
+  "name": "language-typescript-grammars-only",
+  "version": "0.0.0",
+  "description": "A short description of your language package",
+  "keywords": [
+    "language",
+    "grammar"
+  ],
+  "repository": "https://github.com/atom/language-typescript-grammars-only",
+  "license": "MIT",
+  "engines": {
+    "atom": ">=0.174.0 <2.0.0"
+  }
+}
