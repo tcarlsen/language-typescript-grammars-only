@@ -4,7 +4,8 @@
   "description": "A short description of your language package",
   "keywords": [
     "language",
-    "grammar"
+    "grammar",
+    "typescript"
   ],
   "repository": "https://github.com/tcarlsen/language-typescript-grammars-only",
   "license": "MIT",
