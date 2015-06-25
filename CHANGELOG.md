@@ -1,0 +1,8 @@
+
+1.0.0 / 2015-06-25
+==================
+
+  * adding disclamer for package name
+  * cloning grammars and snippets from [atom-typescript](https://github.com/TypeStrong/atom-typescript)
+  * adding settings
+  * init
