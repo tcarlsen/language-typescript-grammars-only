@@ -6,7 +6,7 @@
     "language",
     "grammar"
   ],
-  "repository": "https://github.com/atom/language-typescript-grammars-only",
+  "repository": "https://github.com/tcarlsen/language-typescript-grammars-only",
   "license": "MIT",
   "engines": {
     "atom": ">=0.174.0 <2.0.0"
