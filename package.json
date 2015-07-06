@@ -1,6 +1,6 @@
 {
   "name": "language-typescript-grammars-only",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A grammar only language package for TypeScript",
   "keywords": [
     "language",
