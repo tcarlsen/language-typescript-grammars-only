@@ -1,4 +1,9 @@
 
+1.2.0 / 2015-09-08
+==================
+
+  * keep up to date with [atom-typescript](https://github.com/TypeStrong/atom-typescript/)
+
 1.1.0 / 2015-07-06
 ==================
 
