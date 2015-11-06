@@ -1,3 +1,4 @@
+#Taken from TypeStrong/atom-typescript https://github.com/TypeStrong/atom-typescript
 'scopeName': 'source.ts'
 'comment': 'TypeScript Syntax: version 1.0'
 'fileTypes': [
@@ -9,6 +10,81 @@
 'name': 'TypeScript'
 
 'patterns': [
+
+  ####
+  # Rules that no one should change
+  # These are used by code to provide fancy completions
+  ####
+
+  {
+      'comment': 'Match debugger statement'
+      'match': '\\s*(debugger)[\\s;]+'
+      'captures':
+        '1':
+          'name':'keyword.debugger.ts'
+  }
+  {
+      'comment': 'Match full triple slash reference comments'
+      'match': '(\\/\\/\\/\\s*<reference\\s*path\\s*=)(.*)(\\/>)'
+      'captures':
+        '1':
+          'name':'keyword.other.ts'
+        '2':
+          'name':'reference.path.string'
+        '3':
+          'name':'keyword.other.ts'
+  }
+  {
+      'comment': 'Match <amd-dependency'
+      'match': '(\\/\\/\\/\\s*<amd-dependency\\s*path\\s*=)(.*)(\\/>)'
+      'captures':
+        '1':
+          'name':'keyword.other.ts'
+        '2':
+          'name':'amd.path.string'
+        '3':
+          'name':'keyword.other.ts'
+  }
+  {
+      'comment': 'Match <amd-module'
+      'match': '(\\/\\/\\/\\s*<amd-module\\s*name\\s*=)(.*)(\\/>)'
+      'captures':
+        '1':
+          'name':'keyword.other.ts'
+        '2':
+          'name':'amd.path.string'
+        '3':
+          'name':'keyword.other.ts'
+  }
+  {
+      'comment': 'Match import = require'
+      'match': '(import)\\s*([\\p{L}\\p{Nl}$_][\\p{L}\\p{Nl}$\\p{Mn}\\p{Mc}\\p{Nd}\\p{Pc}\\x{200C}\\x{200D}]*)?\\s*=\\s*(require)\\s*\\((.*)\\)'
+      'captures':
+        '1':
+           'name':'keyword.other.ts'
+        '2':
+          'name':'variable.type.ts'
+        '3':
+           'name':'keyword.other.ts'
+        '4':
+          'name':'require.path.string'
+  }
+  {
+      'comment': 'Match ES6 "import from" syntax'
+      'match': '(import).*(from)\\s*(.*[\'"])'
+      'captures':
+        '1':
+           'name':'keyword.other.ts'
+        '2':
+           'name':'keyword.other.ts'
+        '3':
+          'name':'es6import.path.string'
+  }
+
+  ####
+  # Other rules
+  ####
+
   {
     'comment': 'Match stuff like: namespace name {...}'
     'match': '(?:^|(;)|\\s)(module|namespace)\\s+([\\p{L}\\p{Nl}$_.][\\p{L}\\p{Nl}$\\p{Mn}\\p{Mc}\\p{Nd}\\p{Pc}\\x{200C}\\x{200D}.]*)\\s*'
@@ -106,7 +182,7 @@
                 'name': 'keyword.operator.js'
             'patterns': [
               {
-                'include': '$self'
+                'include': '$base'
               }
             ]
           }
@@ -166,7 +242,7 @@
       }
       {
         'comment': 'Matches class method names and styles as function, even if marked private, or getters/setters'
-        'begin': '((?:(?:private|puclic|protected|static)\\s+){0,2})((?:[\\p{L}\\p{Nl}$_][\\p{L}\\p{Nl}$\\p{Mn}\\p{Mc}\\p{Nd}\\p{Pc}\\x{200C}\\x{200D}]*)?)<'
+        'begin': '((?:(?:private|public|protected|static)\\s+){0,2})((?:[\\p{L}\\p{Nl}$_][\\p{L}\\p{Nl}$\\p{Mn}\\p{Mc}\\p{Nd}\\p{Pc}\\x{200C}\\x{200D}]*)?)<'
         'beginCaptures':
           '1':
             'name': 'storage.modifier.js'
@@ -189,7 +265,7 @@
         ]
       }
       {
-        'match': '((?:(?:private|puclic|protected|static)\\s+){0,2})(?:(get|set)\\s+)?([\\p{L}\\p{Nl}$_][\\p{L}\\p{Nl}$\\p{Mn}\\p{Mc}\\p{Nd}\\p{Pc}\\x{200C}\\x{200D}]*)(?=\\()'
+        'match': '((?:(?:private|public|protected|static)\\s+){0,2})(?:(get|set)\\s+)?([\\p{L}\\p{Nl}$_][\\p{L}\\p{Nl}$\\p{Mn}\\p{Mc}\\p{Nd}\\p{Pc}\\x{200C}\\x{200D}]*)(?=\\()'
         'captures':
           '1':
             'name': 'storage.modifier.js'
@@ -215,7 +291,7 @@
         ]
       }
       {
-        'begin': '((?:(?:private|puclic|protected|static)\\s+){0,2})([\\p{L}\\p{Nl}$_][\\p{L}\\p{Nl}$\\p{Mn}\\p{Mc}\\p{Nd}\\p{Pc}\\x{200C}\\x{200D}]*)(\\??)\\s*:\\s*'
+        'begin': '((?:(?:private|public|protected|static)\\s+){0,2})([\\p{L}\\p{Nl}$_][\\p{L}\\p{Nl}$\\p{Mn}\\p{Mc}\\p{Nd}\\p{Pc}\\x{200C}\\x{200D}]*)(\\??)\\s*:\\s*'
         'beginCaptures':
           '1':
             'name': 'storage.modifier.js'
@@ -234,7 +310,7 @@
         ]
       }
       {
-        'match': '((?:(?:private|puclic|protected|static)\\s+){0,2})([\\p{L}\\p{Nl}$_][\\p{L}\\p{Nl}$\\p{Mn}\\p{Mc}\\p{Nd}\\p{Pc}\\x{200C}\\x{200D}]*)(\\??)'
+        'match': '((?:(?:private|public|protected|static)\\s+){0,2})([\\p{L}\\p{Nl}$_][\\p{L}\\p{Nl}$\\p{Mn}\\p{Mc}\\p{Nd}\\p{Pc}\\x{200C}\\x{200D}]*)(\\??)'
         'captures':
           '1':
             'name': 'storage.modifier.js'
@@ -253,14 +329,14 @@
           '1':
             'name': 'meta.delimiter.semicolon.js'
         'patterns': [
-          'include': '$self'
+          'include': '$base'
         ]
       }
       {
         'include': '#curlybracerecursion'
       }
       {
-        'include': '$self'
+        'include': '$base'
       }
       {
         'match': ';'
@@ -441,7 +517,7 @@
             'include': '#comma'
         'patterns': [
           {
-            'include': '$self'
+            'include': '$base'
           }
         ]
       }
@@ -558,74 +634,11 @@
         'name': 'keyword.operator.js'
     'patterns': [
       {
-        'include': '$self'
+        'include': '$base'
       }
     ]
   }
-  {
-      'comment': 'Match debugger statement'
-      'match': '\\s*(debugger)[\\s;]+'
-      'captures':
-        '1':
-          'name':'keyword.debugger.ts'
-  }
-  {
-      'comment': 'Match full triple slash reference comments'
-      'match': '(\\/\\/\\/\\s*<reference\\s*path\\s*=)(.*)(\\/>)'
-      'captures':
-        '1':
-          'name':'keyword.other.ts'
-        '2':
-          'name':'reference.path.string'
-        '3':
-          'name':'keyword.other.ts'
-  }
-  {
-      'comment': 'Match <amd-dependency'
-      'match': '(\\/\\/\\/\\s*<amd-dependency\\s*path\\s*=)(.*)(\\/>)'
-      'captures':
-        '1':
-          'name':'keyword.other.ts'
-        '2':
-          'name':'amd.path.string'
-        '3':
-          'name':'keyword.other.ts'
-  }
-  {
-      'comment': 'Match <amd-module'
-      'match': '(\\/\\/\\/\\s*<amd-module\\s*name\\s*=)(.*)(\\/>)'
-      'captures':
-        '1':
-          'name':'keyword.other.ts'
-        '2':
-          'name':'amd.path.string'
-        '3':
-          'name':'keyword.other.ts'
-  }
-  {
-      'comment': 'Match import = require'
-      'match': '(import)\\s*([\\p{L}\\p{Nl}$_][\\p{L}\\p{Nl}$\\p{Mn}\\p{Mc}\\p{Nd}\\p{Pc}\\x{200C}\\x{200D}]*)?\\s*=\\s*(require)\\s*\\((.*)\\)'
-      'captures':
-        '1':
-           'name':'keyword.other.ts'
-        '2':
-          'name':'variable.type.ts'
-        '3':
-           'name':'keyword.other.ts'
-        '4':
-          'name':'require.path.string'
-  }
-  {
-      'comment': 'Match ES6 "import from" syntax'
-      'match': '(import).*(from)\\s*(.*[\'"])'
-      'captures':
-        '1':
-           'name':'keyword.other.ts'
-        '2':
-           'name':'keyword.other.ts'
-        '3':
-          'name':'es6import.path.string'
-  }
+
   {
     'include': '#curlybracerecursion'
   }
@@ -638,7 +651,7 @@
         'name': 'meta.brace.square.js'
     'patterns': [
       {
-        'include': '$self'
+        'include': '$base'
       }
     ]
   }
@@ -651,7 +664,7 @@
         'name': 'meta.brace.round.js'
     'patterns': [
       {
-        'include': '$self'
+        'include': '$base'
       }
     ]
   }
@@ -712,12 +725,12 @@
         'name': 'meta.brace.curly.js'
     'patterns': [
       {
-        'include': '$self'
+        'include': '$base'
       }
     ]
 
   'type':
-    'begin': '(?=)'
+    'begin': '(?=[\\(\\{\\p{L}\\p{Nl}$_])'
     'end': '(?<!\\*\\/)(?<!\\|)(?<!\\s)(?<!\\.)(?!\\G)(?!\\.)(?!\\s*\\|)'
     'patterns': [
       {
@@ -765,7 +778,7 @@
     ]
 
   'typeinheritedfrom':
-    'begin': '(?=)'
+    'begin': '(?=[\\(\\{\\p{L}\\p{Nl}$_])'
     'end': '(?<!\\*\\/)(?<!\\|)(?<!\\.)(?!\\G)(?!\\.)(?!\\|)'
     'patterns': [
       {
@@ -1036,7 +1049,7 @@
         'name': 'punctuation.definition.parameters.end.js'
     'patterns': [
       {
-        'include': '$self'
+        'include': '$base'
       }
     ]
 
