@@ -1,4 +1,9 @@
 
+1.4.0 / 2016-06-08
+==================
+
+  * Update grammar to latest available from atom-typescript.
+
 1.3.1 / 2016-03-07
 ==================
 
