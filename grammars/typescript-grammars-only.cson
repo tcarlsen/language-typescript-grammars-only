@@ -1066,7 +1066,7 @@ repository:
             '''
           }
           {
-            name: "meta.definition.property.ts variable.object.property.ts"
+            name: "meta.definition.property.ts syntax--variable.variable.object.property.ts"
             match: "[_$[:alpha:]][_$[:alnum:]]*"
           }
           {
@@ -1152,7 +1152,7 @@ repository:
         include: "#array-literal"
       }
       {
-        name: "meta.definition.method.ts entity.name.function.ts"
+        name: "meta.definition.method.ts syntax--entity.entity.name.function.ts"
         match: "[_$[:alpha:]][_$[:alnum:]]*"
       }
       {
