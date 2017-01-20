@@ -150,7 +150,7 @@ repository:
         '''
         beginCaptures:
           "1":
-            name: "meta.definition.variable.ts entity.name.function.ts"
+            name: "meta.definition.variable.ts syntax--entity.entity.name.function.ts"
         end: "(?=$|[;,=}]|(\\s+(of|in)\\s+))"
         patterns: [
           {
@@ -169,7 +169,7 @@ repository:
         begin: "([[:upper:]][_$[:digit:][:upper:]]*)(?![_$[:alnum:]])"
         beginCaptures:
           "1":
-            name: "meta.definition.variable.ts variable.other.constant.ts"
+            name: "meta.definition.variable.ts syntax--variable.variable.other.constant.ts"
         end: "(?=$|[;,=}]|(\\s+(of|in)\\s+))"
       }
       {
@@ -177,7 +177,7 @@ repository:
         begin: "([_$[:alpha:]][_$[:alnum:]]*)"
         beginCaptures:
           "1":
-            name: "meta.definition.variable.ts variable.other.readwrite.ts"
+            name: "meta.definition.variable.ts syntax--variable.variable.other.readwrite.ts"
         end: "(?=$|[;,=}]|(\\s+(of|in)\\s+))"
         patterns: [
           {
@@ -299,7 +299,7 @@ repository:
       "1":
         name: "keyword.operator.rest.ts"
       "2":
-        name: "meta.definition.variable.ts variable.other.readwrite.ts"
+        name: "meta.definition.variable.ts syntax--variable.variable.other.readwrite.ts"
   "object-binding-pattern":
     begin: "(?:(\\.\\.\\.)\\s*)?(\\{)"
     beginCaptures:
@@ -1041,7 +1041,7 @@ repository:
             include: "#comment"
           }
           {
-            name: "meta.definition.property.ts entity.name.function.ts"
+            name: "meta.definition.property.ts syntax--entity.entity.name.function.ts"
             match: '''
               (?x)([_$[:alpha:]][_$[:alnum:]]*)(?=(\\?\\s*)?\\s*
                 (=\\s*(
@@ -1266,7 +1266,7 @@ repository:
       "4":
         name: "keyword.generator.asterisk.ts"
       "5":
-        name: "meta.definition.function.ts entity.name.function.ts"
+        name: "meta.definition.function.ts syntax--entity.entity.name.function.ts"
     end: "(?=;|\\})|(?<=\\})"
     patterns: [
       {
@@ -1301,7 +1301,7 @@ repository:
       "4":
         name: "keyword.generator.asterisk.ts"
       "5":
-        name: "meta.definition.function.ts entity.name.function.ts"
+        name: "meta.definition.function.ts syntax--entity.entity.name.function.ts"
   "object-literal":
     name: "meta.objectliteral.ts"
     begin: "\\{"
