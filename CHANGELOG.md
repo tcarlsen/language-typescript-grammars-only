@@ -1,4 +1,11 @@
 
+1.6.0 / 2017-01-24
+==================
+
+  * Merge pull request #15 from aLANparty/sync-atom-typescript-v10.1.13
+  * Fix atom 1.13 issues
+  * Sync grammar files with the updates from TypeStrong/atom-typescript v10.1.13
+
 1.4.0 / 2016-06-08
 ==================
 
